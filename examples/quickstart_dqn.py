@@ -13,9 +13,13 @@
 # limitations under the License.
 # ==============================================================================
 
+import os, sys
+dir = os.path.dirname(__file__)
+pathname = os.path.join(dir, '../')
+sys.path.append(os.path.realpath(pathname))
+
 import numpy as np
 import subprocess
-import os
 import matplotlib.pyplot as plt
 
 from tensorforce.agents import DQNAgent

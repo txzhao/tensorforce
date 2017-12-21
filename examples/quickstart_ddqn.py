@@ -13,9 +13,13 @@
 # limitations under the License.
 # ==============================================================================
 
+import os, sys
+dir = os.path.dirname(__file__)
+pathname = os.path.join(dir, '../')
+sys.path.append(os.path.realpath(pathname))
+
 import numpy as np
 import subprocess
-import os
 import matplotlib.pyplot as plt
 
 from tensorforce.agents import DDQNAgent
@@ -27,7 +31,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = ""
 
 max_episodes = 400
 max_timesteps = 200
-num_of_runs = 5
+num_of_runs = 2
 cur_rwd = []
 aver_rwd = np.array((max_episodes, ))
 
