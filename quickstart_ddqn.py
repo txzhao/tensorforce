@@ -27,7 +27,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = ""
 
 max_episodes = 400
 max_timesteps = 200
-num_of_runs = 3
+num_of_runs = 5
 cur_rwd = []
 aver_rwd = np.array((max_episodes, ))
 
@@ -96,7 +96,7 @@ for run_no in range(1, num_of_runs+1):
 		return True
 
 	# Start learning
-	runner.run(episodes=max_episodes, max_episode_timesteps=max_timesteps, episode_finished=episode_finished)
+	runner.run(episodes=max_episodes, max_episode_timesteps=max_timesteps, episode_finished=episode_finished, modify_rewards=True)
 
 	# Print statistics
 	print("Learning finished. Total episodes: {ep}. Average reward of last 100 episodes: {ar}.".format(
@@ -116,6 +116,6 @@ ax.plot(range(len(aver_rwd)), list(aver_rwd))
 ax.set_title('Number of Run: ' + str(num_of_runs))
 ax.set_xlabel('Episodes')
 ax.set_ylabel('Average Rewards')
-fig.savefig('/Users/txzhao/Desktop/thesis/tensorforce/figs/result.png')
+fig.savefig('/Users/txzhao/Desktop/tensorforce/figs/result.png')
 plt.close(fig)
 
