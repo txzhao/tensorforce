@@ -18,6 +18,7 @@ from __future__ import print_function
 from __future__ import division
 
 import time
+import math
 from six.moves import xrange
 
 
@@ -105,10 +106,16 @@ class Runner(object):
                 else:
                     state, terminal, reward = self.environment.execute(actions=action)
 
-                if max_episode_timesteps is not None and self.episode_timestep >= max_episode_timesteps:
+                    # modify reward function for cartpole-v0
+                    x, _, theta, _ = state
+                    r1 = (2.4 - abs(x)) / 2.4 - 0.8
+                    r2 = (0.20944 - abs(theta)) / 0.20944 - 0.5
+                    reward_cont = r1 + r2
+
+                if max_episode_timesteps is not None and self.episode_timestep >= max_episode_timesteps - 1:
                     terminal = True
 
-                self.agent.observe(terminal=terminal, reward=reward)
+                self.agent.observe(terminal=terminal, reward=reward_cont)
 
                 self.episode_timestep += 1
                 self.timestep += 1
