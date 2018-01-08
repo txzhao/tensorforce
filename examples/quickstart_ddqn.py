@@ -19,7 +19,6 @@ pathname = os.path.join(dir, '../')
 sys.path.append(os.path.realpath(pathname))
 
 import numpy as np
-import subprocess
 import matplotlib.pyplot as plt
 
 from tensorforce.agents import DDQNAgent
